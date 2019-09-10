@@ -1,0 +1,104 @@
+\documentclass[12pt, unicode]{beamer}
+\usetheme{CambridgeUS}
+\usepackage{luatexja}
+
+\title{Gitによるバージョン管理入門}
+\author{田中 健策（株式会社ぺあのしすてむ）}
+\date[2019/10/04]{}
+
+\begin{document}
+
+\frame{\maketitle}
+
+\begin{frame}{バージョン管理とは何か？}
+\begin{itemize}
+\item 「何の」修正を行ったのか調べることができる。
+\item 「だれが」その修正を行ったのか調べることができる。
+\item 「いつ」その修正が行われたのか調べることができる。
+\item 「なぜ」その修正が行われたのか調べることができる。
+\item ファイルを過去の状態に戻すことができる。
+\end{itemize}
+\end{frame}
+\begin{frame}{ファイル名によるバージョン管理をやめよう}
+
+ファイル名-20191004-田中-ver2.xlsx
+
+のように、ファイル名に色々くっつけて、
+バージョン管理する職場がまだまだ多いようですが、
+機械のほうが上手なことをわざわざ人の手でやることはやめましょう。
+
+\end{frame}
+\begin{frame}{バージョン管理システム小史（その１）}
+\begin{itemize}
+\item 1972年、ベル研究所のMarc J. Rochkindが、
+世界初のバージョン管理システムSCSSを開発。
+\item 1982年、Walter F. TichyがRCSを開発。
+\end{itemize}
+
+これはファイルを１つずつローカルで管理するためのツール。
+
+ファイルを編集するためには\textbf{ロック}を取得する。
+ロックを解放するまで、そのファイルはその人しか編集できない。
+
+新規に使われることはないが、
+保守業務でRCSが使われるという話は聞いたことがある。
+
+\end{frame}
+\begin{frame}{バージョン管理システム小史（その２）}
+\begin{itemize}
+\item 1990年、CVSがRCSの上に開発される（後にRCSから独立する）。
+\item 2000年、CVSの弱点を解消するためにSubversionが開発される。
+\end{itemize}
+
+複数のファイルの同時管理や、
+枝分かれしたヴァージョンの管理ができるようになった。
+
+また、ネットワーク上の使用を考慮するようになった。
+情報をリモートで一括管理するサーバー・クライアント方式により、
+より多人数での開発が便利になった。
+
+ネットワーク上でロックの仕組みは使いづらいので、
+同時編集を許可して、\textbf{マージ}する、というワークフローが始まった。
+
+\end{frame}
+\begin{frame}{バージョン管理システム小史（その３）}
+\begin{itemize}
+\item 2005年、Linus TorvaldsによってGitが開発される。
+\item 同年、Matt MckallによってMercurialが開発される。
+\item Bazar,Darcsなど、他にも色々あった。でも正直今はGit一強。
+\end{itemize}
+
+分散バージョン管理を実現している。
+ネットワークが繋がってない状態でも、
+ローカルでバージョンを管理して、
+それをリモートに反映させることができる。
+
+リモートが複数あってもいい。
+
+\end{frame}
+\begin{frame}{ホスティングサービス}
+\begin{itemize}
+\item 1999年、SourceForge.netスタート
+\item 2008年、GitHubがスタート
+\item 同年、Bitbucketもスタート
+\item 2011年、GitLabがスタート
+\end{itemize}
+
+Gitなどのリモートリポジトリの管理をしてくれるサービス。
+
+今では、リポジトリを結節点として、
+様々な便利な機能を提供するようになり、
+Gitの使い方だけではなく、GitHubやGitLabの使い方を覚えることが、
+重要になり始めた。
+
+
+\end{frame}
+\begin{frame}{Gitを使ってみよう}
+
+\begin{itemize}
+\item GitHubにアカウントを登録
+\item Sourcetreeを動かしてみよう。
+\end{itemize}
+
+\end{frame}
+\end{document}
