@@ -1,0 +1,119 @@
+\documentclass[12pt, unicode]{beamer}
+\usetheme{CambridgeUS}
+\usepackage{luatexja}
+
+\title{Gitによるバージョン管理入門}
+\author{田中 健策（株式会社ぺあのしすてむ）}
+\date[2019/10/18]{第三回}
+
+\begin{document}
+
+\frame{\maketitle}
+
+\begin{frame}{前回までと今後の方針}
+
+前回まで
+\begin{itemize}
+\item tortoiseGitの設定のNetwork > Proxyに、名大のProxyサーバーのURLを設定してください。
+\item もしまだコラボレーターに登録できていない人がいたら教えてください。
+\end{itemize}
+
+今後の方針
+\begin{itemize}
+\item 分割したLaTeXファイルをまとめて一つのpdfにする方法を考える
+\item コンパイルなどの作業をできるだけ自動化する。
+\end{itemize}
+
+\end{frame}
+\begin{frame}[fragile]{\LaTeX のソース分割 １}
+
+複数人でLaTeXを書くときは、
+ファイル分割をする必要がある。
+
+一番簡単なファイル分割は、
+\verb|\input|
+や
+\verb|\include|
+を使うものである。
+
+しかしこれには、
+単独のファイルでコンパイルできないという欠点がある。
+
+LaTeXのコンパイルはそれなりの時間がかかるので、これは避けたい
+（コンパイルして結果を見るためだけに数秒かかるのは、執筆時に多大なストレスになる）。
+
+\end{frame}
+\begin{frame}{\LaTeX のソース分割 ２}
+
+そこで、自分でマクロを各方法や、用意されたパッケージを使う方法など、
+様々な方法が開発されている。
+
+\begin{itemize}
+\item 効率的なLaTeXファイル分割術 \url{https://qiita.com/wtsnjp/items/6ba3b8e12514d8a3bd41}
+\item 分割したLaTeXファイルをsubfilesを使ってコンパイルする　\url{https://qiita.com/sankichi92/items/1e113fcf6cc045eb64f7}
+\end{itemize}
+
+今回は、subfilesパッケージを使ってみようと思う。
+
+\end{frame}
+
+\begin{frame}{git hooks}
+
+gitには操作をした時に、自動的に別のプログラムを走らせる\textbf{フック}という仕組みがある。
+
+これを使えば、様々なルーチーン作業（決まり切った作業）を自動化することができる。
+
+ただし使うためには\textbf{シェルスクリプト}などの、コマンドライン・プログラミングの知識が必要になる。
+
+\end{frame}
+
+\begin{frame}{ローカルリポジトリ用のフック}
+\begin{itemize}
+\item pre-commit commitする前に走る commitを中止できる
+\item post-commit commitした後に走る
+\item pre-push pushする前に走る pushを中止に知ることができる
+\item poist-push pushした後に走る
+\item checkout前後やmerge前後やrebase前後に走るフックもある
+\end{itemize}
+
+これを使うと、
+
+\begin{itemize}
+\item commit前にコンパイルを走らせ、失敗したらcommit中止
+\item push前に検査プログラムを走らせ、例えばルールに反していたらpush中止
+\end{itemize}
+
+などの自動化ができる。
+
+\end{frame}
+\begin{frame}{リモートリポジトリ用のフック}
+\begin{itemize}
+\item pre-receive pushを受け取った直後に走るフック pushをリモートの側から中止にできる
+\item update pushを受け取った時に、ブランチごとに走るフック
+\item post-receive pushを受け取って全ての処理が終わった後に走るフック
+\end{itemize}
+
+これを使うと
+
+\begin{itemize}
+\item テストに失敗すればpushを中止
+\item 全ての処理終了後、変更部分等をメール、slackに通知。またTwitterなどに流すこともできる
+\item masterブランチにpushしたときだけ、ファイルをコンパイルして、そのpdfファイルを自動的にwebページに設定する
+\end{itemize}
+
+などの自動化ができる。
+
+\end{frame}
+\begin{frame}{Githubの自動化ツール}
+
+gitのフックでできることは限られているが、Githubにはもっと高度な自動化機能がある。
+
+プログラミングでは様々なルーチーン作業を自動化していく習慣を\textbf{CI（継続的インテグレーション）}と言う。
+
+Githubは\textbf{Github actions}と言うCIツールを昨年リリースしたばかりなので、
+これを使って、\LaTeX の自動コンパイルと
+pdfの自動的な追加を実現してみよう。
+
+\end{frame}
+
+\end{document}
