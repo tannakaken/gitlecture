@@ -3,8 +3,8 @@
 \usepackage{luatexja}
 
 \title{Gitによるバージョン管理入門}
-\author{田中 健策（株式会社ぺあのしすてむ）}
-\date[2019/10/04]{第一回}
+\author{田中 健策（株式会社RAKUDO）}
+\date[2020/12/04]{第一回}
 
 \begin{document}
 
@@ -88,7 +88,7 @@ Gitなどのリモートリポジトリの管理をしてくれるサービス�
 
 今では、リポジトリを結節点として、
 様々な便利な機能を提供するようになり、
-Gitの使い方だけではなく、GitHubやGitLabの使い方を覚えることが、
+Gitの使い方だけではなく、GitHubなどの使い方を覚えることが、
 重要になり始めた。
 
 
@@ -97,24 +97,52 @@ Gitの使い方だけではなく、GitHubやGitLabの使い方を覚えるこ�
 
 \begin{itemize}
 \item GitHubにアカウントを登録
-\item 作成したアカウントのemailアドレスから\url{tanaka@peano-system.jp}に
-「アカウント登録お願いします」という表題でメールを送信する。
-\item Sourcetreeを動かしてみよう。
+\item 作成したアカウントのemailアドレスから\url{kensaku\_tanaka@rakudo.io}に
+「アカウント登録お願いします」という表題でメールを送信してください。
+名前と学籍番号、githubでのユーザーネームを必ず記入すること。
+\item お好きなgitクライアントを動かしてみよう。GUIならSourcetreeなどがあります。またVSCodeなどのエディターにもgitクライアントが付属しています。
+\item CLIでもいいならgit for Windows（git bash）などもあります。
+macやlinuxならCLIのgitは最初から入っています。
 \end{itemize}
 
 \end{frame}
 \begin{frame}{課題}
 
-昨年の名大の入試問題の解答を \LaTeX で作成してもらいます。
+大学の数学の入試問題（例えば昨年の名大の入試問題）の解答を \LaTeX で作成してもらいます。
 
-問題は\url{http://www.nagoya-u.ac.jp/admission/applicant/report/31_9.html}にあるものを使います。
+例えば\url{http://www.nagoya-u.ac.jp/admission/upload_images/06\%20R2\%20sugakurikakei-mondai.pdf}などです。
 
-リポジトリは\url{https://github.com/peano-system/nugitlecture}です。
+リポジトリは\url{https://github.com/tannakaken/nugitlecture2020}です。
 手元にクローンしておいてください。
 
 最終的に、解答のpdfが一つできるようになることが目標です。
 
+実際に開発をしながら、ブランチ分けやCI/CDなどのテクニックを学習します。
+
+\end{frame}
+\begin{frame}{成績評価}
+
 成績評価は、GitHubのlogから貢献度を計測して行います（目で見るだけです）。
+
+なのでNUCTを使った提出物はありません。
+
+logが残っていれば（github上で活動の記録があれば）、5点与えます。
+
+最終成果物に意味のある貢献があれば、10点与えます。
+
+活発に活動している記録があれば、15点与えます。
+
+\end{frame}
+\begin{frame}{参考文献}
+{\huge Pro Git}
+
+\begin{figure}
+\includegraphics[width=100pt]{progit2.png}
+\end{figure}
+
+\url{https://git-scm.com/book/ja/v2}で無料公開中。
+
+技術的細部も含めた本格的な内容です。
 
 \end{frame}
 \end{document}
