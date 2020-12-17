@@ -25,7 +25,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      # Runs a single command using the runners shell
       - name: Compile LaTeX for day1
         uses: xu-cheng/latex-action@v2
         with:
@@ -33,16 +32,23 @@ jobs:
           root_file: ./day1.tex
           latexmk_use_lualatex: true
       
-      # Runs a single command using the runners shell
       - name: Compile LaTeX for day2
         uses: xu-cheng/latex-action@v2
         with:
           working_directory: day2
           root_file: ./day2.tex
           latexmk_use_lualatex: true
+
+      - name: Compile LaTeX for day3
+        uses: xu-cheng/latex-action@v2
+        with:
+          working_directory: day3
+          root_file: ./day3.tex
+          latexmk_use_lualatex: true
       
       - run: mv ./day1/day1.pdf ./www/day1.pdf
       - run: mv ./day2/day2.pdf ./www/day2.pdf
+      - run: mv ./day3/day3.pdf ./www/day3.pdf
         
       - name: Deploy Web Page
         uses: peaceiris/actions-gh-pages@v3

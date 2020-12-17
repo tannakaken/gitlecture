@@ -3,122 +3,108 @@
 \usepackage{luatexja}
 
 \title{Gitによるバージョン管理入門}
-\author{田中 健策（株式会社ぺあのしすてむ）}
-\date[2019/10/18]{第三回}
+\author{田中 健策（株式会社RAKUDO）}
+\date[2019/12/18]{第三回}
 
 \begin{document}
 
 \frame{\maketitle}
 
-\begin{frame}{前回までと今後の方針}
+\begin{frame}{githubのコミュニティ機能}
 
-前回まで
-\begin{itemize}
-\item tortoiseGitの設定のNetwork > Proxyに、名大のProxyサーバーのURLを設定してください。
-\item もしまだコラボレーターに登録できていない人がいたら教えてください。
-\end{itemize}
+バージョン管理システムは、コラボレーションを
+促進することにより、人を繋げることができます。
 
-今後の方針
-\begin{itemize}
-\item 分割したLaTeXファイルをまとめて一つのpdfにする方法を考える
-\item コンパイルなどの作業をできるだけ自動化する。
-\end{itemize}
+自然にgithubはコミュニティを支援する機能を持つようになりました。
+
+それを使いこなすことが、一人ではできない大きな仕事をしたり、
+思わぬ出会いを生み出すために重要です。
 
 \end{frame}
-\begin{frame}[fragile]{\LaTeX のソース分割 １}
+\begin{frame}{Wiki}
 
-複数人でLaTeXを書くときは、
-ファイル分割をする必要がある。
+Wikiはメンバーの誰でも編集できる、コミュニティ用の文書管理ツールです。
 
-一番簡単なファイル分割は、
-\verb|\input|
-や
-\verb|\include|
-を使うものである。
+githubのリポジトリーにはWikiを用意することができます（これ自体がgitで管理されています）。
 
-しかしこれには、
-単独のファイルでコンパイルできないという欠点がある。
+この講義用のWikiは\url{https://github.com/tannakaken/nugitlecture2020/wiki}です。
 
-LaTeXのコンパイルはそれなりの時間がかかるので、これは避けたい
-（コンパイルして結果を見るためだけに数秒かかるのは、執筆時に多大なストレスになる）。
+メンバーで共有すべき知識などはここに書きましょう。
 
-\end{frame}
-\begin{frame}{\LaTeX のソース分割 ２}
-
-そこで、自分でマクロを各方法や、用意されたパッケージを使う方法など、
-様々な方法が開発されている。
-
-\begin{itemize}
-\item 効率的なLaTeXファイル分割術 \url{https://qiita.com/wtsnjp/items/6ba3b8e12514d8a3bd41}
-\item 分割したLaTeXファイルをsubfilesを使ってコンパイルする　\url{https://qiita.com/sankichi92/items/1e113fcf6cc045eb64f7}
-\end{itemize}
-
-今回は、subfilesパッケージを使ってみようと思う。
+今回は、それぞれの担当分と、LaTeXファイルの作成方針を（田中）が書きます。
 
 \end{frame}
 
-\begin{frame}{git hooks}
+\begin{frame}{Issues}
 
-gitには操作をした時に、自動的に別のプログラムを走らせる\textbf{フック}という仕組みがある。
+リポジトリーに何か問題が発生した時、
+ここに報告して、議論をすることができます。
 
-これを使えば、様々な定型作業（決まり切った作業）を自動化することができる。
+今回は
+\begin{itemize}
+\item pullやpushができないなどgitの問題
+\item コンパイルができないなどのTeXの問題、
+\end{itemize}
+をここに投稿すればいいでしょう。
 
-ただし使うためには\textbf{シェルスクリプト}などの、コマンドライン・プログラミングの知識が必要になる。
+（ただし、これは一般に公開されているので、講義の成績に関する質問などは避けたほうがいいかもしれません）
 
 \end{frame}
 
-\begin{frame}{ローカルリポジトリ用のフック}
-\begin{itemize}
-\item pre-commit commitする前に走る commitを中止できる
-\item post-commit commitした後に走る
-\item pre-push pushする前に走る pushを中止に知ることができる
-\item poist-push pushした後に走る
-\item checkout前後やmerge前後やrebase前後に走るフックもある
-\end{itemize}
+\begin{frame}{discussions}
 
-これを使うと、
+その他discussionsなどの機能もあります。
 
-\begin{itemize}
-\item commit前にコンパイルを走らせ、失敗したらcommit中止
-\item push前に検査プログラムを走らせ、例えばルールに反していたらpush中止
-\end{itemize}
-
-などの自動化ができる。
+あまり使ったことはないので便利かはわかりませんが、
+作業の担当などで疑問があればここで議論をすることも可能でしょう。
 
 \end{frame}
-\begin{frame}{リモートリポジトリ用のフック}
-\begin{itemize}
-\item pre-receive pushを受け取った直後に走るフック pushをリモートの側から中止にできる
-\item update pushを受け取った時に、ブランチごとに走るフック
-\item post-receive push後、全ての処理が終わった後に走るフック
-\end{itemize}
 
-これを使うと
+\begin{frame}{最終目標の確認}
 
-\begin{itemize}
-\item テストに失敗すればpushを中止
-\item masterブランチにpushしたときだけ、ファイルをコンパイルして、そのpdfファイルを自動的にwebページに設定する
-\item 全ての処理終了後、変更部分等をメール、slack、Twitterで通知。またCIツールなどに情報を渡すこともできる
-\end{itemize}
+最終的に一枚のPDFになるようなLaTeXファイルを作ってもらいます。
 
-などの自動化ができる。
+書くことは「何かの問題の解答」です。
+
+適当な大学入試問題などをWebで拾って来ればいいと思います。
+
+作るのが難しそうだったら、簡単な問題の解答を作ればいいです（そこが重要ではないので）。
 
 \end{frame}
-\begin{frame}{Githubの自動化ツール}
 
-gitのフックでできることは限られているが、もっと高度な自動化機能が求められることもある。
+\begin{frame}{今回の課題}
+リポジトリーのWikiに
+「自分はなんの問題の解答を書くか」を書いてください。
 
-ソフトウェア業界では様々な定型作業を自動化していく習慣を\textbf{CI（継続的インテグレーション）}や
-\textbf{CD（継続的デプロイ）}と呼ぶ。
+Wikiページの右上に「Edit」ボタンがあります。
 
-Githubは今までCI/CDツールについてはGitlabに遅れをとり、外部のCI/CDツールとの連携が必要であったが、
-マイクロソフトによるGithub買収後、マイクロソフトのマネーパワー流入によって、必要なツールは急ビッチで整えられている。
+またそれぞれの作業は、ブランチを分けて行います。
 
-特にCI/CDツールについてGithubは\textbf{Github actions}というツールを昨年リリースし、
-今年に入ってそれがCI/CDのツールとしての機能を標準サポートするようになった。
+前回作ったテスト用のファイルを自分で掃除して、ブランチを分けて、自分用の作業フォルダを作ってください。
 
-今回はこれを使って、\LaTeX の自動コンパイルと
-pdfの自動的な追加を実現してみよう。
+ブランチ名は自分のgithubアカウント名などがいいと思います。
+
+そこに、自分のLaTeXファイルを書いていってください。
+
+ここまでが今回の課題です。
+
+\end{frame}
+
+\begin{frame}[fragile]{次回以降の話}
+
+1/8までに単独でコンパイルできる解答ができているとありがたいです。
+
+それぞれのLaTeXファイルを統合する仕組みは次回以降作ります。
+
+今回はとりあえず自分のLaTeXファイルだけでコンパイルできるようにしてください。
+
+\end{frame}
+\begin{frame}{今後の予定}
+\begin{itemize}
+\item それぞれでコンパイルできるLaTeXファイルを統合してコンパイルする方法
+\item プルリクエストによってブランチをマージする
+\item github actionによる自動化
+\end{itemize}
 
 \end{frame}
 
