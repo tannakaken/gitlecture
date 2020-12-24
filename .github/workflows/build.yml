@@ -56,7 +56,7 @@ jobs:
       - run: mv ./day1/day1.pdf ./www/day1.pdf
       - run: mv ./day2/day2.pdf ./www/day2.pdf
       - run: mv ./day3/day3.pdf ./www/day3.pdf
-      - run: mv ./day3/day4.pdf ./www/day4.pdf
+      - run: mv ./day4/day4.pdf ./www/day4.pdf
         
       - name: Deploy Web Page
         uses: peaceiris/actions-gh-pages@v3
