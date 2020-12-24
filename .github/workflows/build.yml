@@ -45,10 +45,18 @@ jobs:
           working_directory: day3
           root_file: ./day3.tex
           latexmk_use_lualatex: true
+
+      - name: Compile LaTeX for day4
+        uses: xu-cheng/latex-action@v2
+        with:
+          working_directory: day4
+          root_file: ./day4.tex
+          latexmk_use_lualatex: true
       
       - run: mv ./day1/day1.pdf ./www/day1.pdf
       - run: mv ./day2/day2.pdf ./www/day2.pdf
       - run: mv ./day3/day3.pdf ./www/day3.pdf
+      - run: mv ./day3/day4.pdf ./www/day4.pdf
         
       - name: Deploy Web Page
         uses: peaceiris/actions-gh-pages@v3
