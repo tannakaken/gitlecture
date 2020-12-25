@@ -76,24 +76,19 @@ main.texとintroductionフォルダの中のintroduction.texのファイルがma
 
 \verb|\usepackage{subfiles}|
 
-を書き、本文に
-
-\verb|\subfile{introduction/introduction}|
-
-と書きます。
-皆さんは
+を書き、本文の挿入したい位置に
 
 \verb|\subfile{自分のフォルダ/自分のファイル}|
 
-と書くわけです。
+を加えます。
 
 そして自分の\LaTeX ファイルのプリアンプルは
 
-\verb|\subfile{introduction/introduction}|
+\verb|\documentclass[../main]{subfiles}|
 
 だけにしておきます。
 
-必要なプリアンプルはmain.texの方に書いておいてください。
+必要なプリアンプルはmain.texのプリアンプルに書いておいてください（独自設定を使いすぎるとconflictが起こるので気をつけてください）。
 
 \end{frame}
 
