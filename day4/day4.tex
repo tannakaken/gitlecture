@@ -66,7 +66,34 @@ LaTeXのコンパイルはそれなりの時間がかかるので、これは避
 今回は、二つ目のsubfilesパッケージを使います。
 TeX Liveに含まれているが、もし各自の環境に含まれていなければインストールしておいてください。
 
-書き方は、main.texとintroduction.texのファイルがmainブランチにあるので、見ておいてください（Wikiにも書き方を書いておきます）。
+main.texとintroductionフォルダの中のintroduction.texのファイルがmainブランチにあります。
+この２つが書き方の例になっていますので、見ておいてください（次のスライドとWikiにも書き方を書いておきます）。
+
+\end{frame}
+\begin{frame}[fragile]{subfilesパッケージの使い方}
+
+まず、統合する方の\LaTeX ファイル（今回はmain.tex）のプリアンプル
+
+\verb|\usepackage{subfiles}|
+
+を書き、本文に
+
+\verb|\subfile{introduction/introduction}|
+
+と書きます。
+皆さんは
+
+\verb|\subfile{自分のフォルダ/自分のファイル}|
+
+と書くわけです。
+
+そして自分の\LaTeX ファイルのプリアンプルは
+
+\verb|\subfile{introduction/introduction}|
+
+だけにしておきます。
+
+必要なプリアンプルはmain.texの方に書いておいてください。
 
 \end{frame}
 
@@ -150,5 +177,13 @@ github actionsです（それ以外にwebhooksも同様の使い方ができま�
 
 \end{frame}
 
+\begin{frame}{今回の課題}
+
+\begin{itemize}
+\item 自分の\LaTeX ファイル（なんらかの問題の解答。何の問題に解答したかを記入）を完成させる。
+\item 自分のファイルをsubfilesに対応させ、main.texを編集して、自分のファイルだけでも、main.texに統合してでも、どちらでもコンパイルできるようにする。
+\item mainブランチへのプルリクエストを作成する。
+\end{itemize}
+\end{frame}
 
 \end{document}
